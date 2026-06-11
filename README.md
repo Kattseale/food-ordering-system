@@ -14,8 +14,8 @@ Pom.xml (Project Object Model) file is the heart of the projects created. It is 
 It is in xml format. Maven uses it to download project information, dependencies, plugins and build settings required for the application.
     
 4. What is the purpose of application.properties?
-The application.properties file is used to configure a Spring Boot application. It stores settings such as database connection details,
-server ports and other application-specific properties.
+The application.properties file is used to configure a Spring Boot application. It stores settings such as database connection details, server ports 
+and other application-specific properties.
 
 5. What does @SpringBootApplication do?
 @SpringBootApplication annotation is a convenient meta-annotation used to mark the main configuration class and entry point of a Spring Boot application.
