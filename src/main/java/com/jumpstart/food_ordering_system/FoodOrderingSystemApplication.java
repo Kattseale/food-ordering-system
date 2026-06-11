@@ -1,4 +1,4 @@
-package food_ordering_system;
+package com.jumpstart.food_ordering_system;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FoodOrderingSystemApplication {
 
 	public static void main(String[] args) {
-		System.out.println("hello katt");
 		SpringApplication.run(FoodOrderingSystemApplication.class, args);
 	}
 
