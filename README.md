@@ -46,7 +46,8 @@ Dependency Injection (DI) is a software design technique where an object receive
 
 4. The entity package contains classes that represent database tables. These classes are mapped to database tables using JPA annotations.
 
-5. Data Transfer Object (DTO) package contains objects used to transfer data between different layers of the application without exposing internal entities differently.
+5. Data Transfer Object (DTO) package contains objects used to transfer data between different layers of the application without exposing internal entities 
+differently.
 
 6. The config package contains configuration classes used to customize the application's behaviour, such as security, database, or bean configurations.
 
