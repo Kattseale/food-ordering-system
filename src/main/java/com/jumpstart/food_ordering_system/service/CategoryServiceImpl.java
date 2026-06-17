@@ -33,7 +33,6 @@ public class CategoryServiceImpl implements CategoryService {
                 })
                 .collect(Collectors.toList());
     }
-
     @Override
     public CategoryDto getCategoryById(Long id) {
 
@@ -47,5 +46,23 @@ public class CategoryServiceImpl implements CategoryService {
         dto.setName(category.getName());
 
         return dto;
+    }
+
+    @Override
+    public CategoryDto addCategory(CategoryDto dto) {
+
+        Category category = new Category();
+
+        category.setName(dto.getName());
+
+        Category savedCategory =
+                categoryRepository.save(category);
+
+        CategoryDto responseDto = new CategoryDto();
+
+        responseDto.setId(savedCategory.getId());
+        responseDto.setName(savedCategory.getName());
+
+        return responseDto;
     }
 }
