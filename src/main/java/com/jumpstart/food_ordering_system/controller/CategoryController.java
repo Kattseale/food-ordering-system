@@ -1,5 +1,7 @@
 package com.jumpstart.food_ordering_system.controller;
 
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import jakarta.validation.Valid;
 import com.jumpstart.food_ordering_system.dto.CategoryDto;
 import com.jumpstart.food_ordering_system.service.CategoryService;
@@ -39,5 +41,15 @@ public class CategoryController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(savedCategory);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDto> updateCategory(
+            @PathVariable Long id,
+            @RequestBody CategoryDto dto) {
+
+        CategoryDto updatedCategory =
+                categoryService.updateCategory(id, dto);
+
+        return ResponseEntity.ok(updatedCategory);
     }
 }
