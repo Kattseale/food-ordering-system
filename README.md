@@ -52,3 +52,14 @@ differently.
 6. The config package contains configuration classes used to customize the application's behaviour, such as security, database, or bean configurations.
 
 7. The exception package contains custom exception classes and handlers used to manage errors and provide meaningful responses to users.
+
+**ENDPOINTS**
+
+
+| Method | URL                 | Body                     |
+|--------|---------------------|--------------------------|
+| POST   | /api/categories     | { "name": "Cheese bun"}  |
+| GET    | /api/categories     | -                        |
+| GET    | /api/categories/{4} | { "name": "Dessert"}     |
+| PUT    | /api/categories/{4} | { "name": "Coffee" }     |
+| DELETE | /api/categories/{4} | { "name": "Coffee" }     |
