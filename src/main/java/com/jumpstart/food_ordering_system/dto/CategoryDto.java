@@ -1,8 +1,10 @@
 package com.jumpstart.food_ordering_system.dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@JsonPropertyOrder({"id", "name", "description"})
 public class CategoryDto {
 
     private Long id;
