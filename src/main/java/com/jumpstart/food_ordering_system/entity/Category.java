@@ -2,9 +2,6 @@ package com.jumpstart.food_ordering_system.entity;
 
 import jakarta.persistence.*;
 
-/*
- Represents the category table in the database.
- */
 @Entity
 @Table(name = "category")
 public class Category {
@@ -14,6 +11,8 @@ public class Category {
     private Long id;
 
     private String name;
+
+    private String description;
 
     public Category() {
     }
@@ -32,5 +31,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

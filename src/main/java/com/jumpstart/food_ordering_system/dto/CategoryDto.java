@@ -8,9 +8,12 @@ public class CategoryDto {
     private Long id;
 
     @NotBlank(message = "Category name is required")
-    @Size(min = 2, max = 50,
-            message = "Name must be 2-50 characters")
+    @Size(min = 2, max = 50)
     private String name;
+
+    @NotBlank(message = "Description is required")
+    @Size(min = 5, max = 255)
+    private String description;
 
     public Long getId() {
         return id;
@@ -26,5 +29,13 @@ public class CategoryDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

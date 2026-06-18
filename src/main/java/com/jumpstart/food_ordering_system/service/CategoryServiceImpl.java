@@ -29,6 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
                     CategoryDto dto = new CategoryDto();
                     dto.setId(category.getId());
                     dto.setName(category.getName());
+                    dto.setDescription(category.getDescription());
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -44,6 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryDto dto = new CategoryDto();
         dto.setId(category.getId());
         dto.setName(category.getName());
+        dto.setDescription(category.getDescription());
 
         return dto;
     }
@@ -57,6 +59,7 @@ public class CategoryServiceImpl implements CategoryService {
                                 "Category not found with id " + id));
 
         category.setName(dto.getName());
+        category.setDescription(dto.getDescription());
 
         Category updatedCategory =
                 categoryRepository.save(category);
@@ -65,6 +68,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         responseDto.setId(updatedCategory.getId());
         responseDto.setName(updatedCategory.getName());
+        responseDto.setDescription(updatedCategory.getDescription());
 
         return responseDto;
     }
@@ -74,6 +78,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = new Category();
 
         category.setName(dto.getName());
+        category.setDescription(dto.getDescription());
 
         Category savedCategory =
                 categoryRepository.save(category);
@@ -82,6 +87,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         responseDto.setId(savedCategory.getId());
         responseDto.setName(savedCategory.getName());
+        responseDto.setDescription(savedCategory.getDescription());
 
         return responseDto;
     }
