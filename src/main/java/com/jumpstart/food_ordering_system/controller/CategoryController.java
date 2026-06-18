@@ -1,5 +1,6 @@
 package com.jumpstart.food_ordering_system.controller;
 
+import com.jumpstart.food_ordering_system.exception.CategoryNotFoundException;
 import com.jumpstart.food_ordering_system.response.Response;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,15 +41,17 @@ public class CategoryController {
     public ResponseEntity<Response<CategoryDto>> getCategoryById(
             @PathVariable Long id) {
 
-        CategoryDto dto =
-                categoryService.getCategoryById(id);
+        try {
+            CategoryDto dto = categoryService.getCategoryById(id);
 
-        return ResponseEntity.ok(
-                Response.success(
-                        "Category retrieved",
-                        dto
-                )
-        );
+            return ResponseEntity.ok(
+                    Response.success("Category retrieved", dto));
+
+        } catch (CategoryNotFoundException ex) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Response.error(404, ex.getMessage()));
+        }
     }
 
     @PostMapping
