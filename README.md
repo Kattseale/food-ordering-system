@@ -63,3 +63,33 @@ differently.
 | GET    | /api/categories/{4} | { "name": "Dessert"}     |
 | PUT    | /api/categories/{4} | { "name": "Coffee" }     |
 | DELETE | /api/categories/{4} | { "name": "Coffee" }     |
+
+
+**API Response Format**
+
+All API endpoints return a standard response structure.
+
+**Success Response**
+
+```json
+{
+  "statusCode": 200,
+  "message": "Category updated successfully",
+  "data": {
+    "id": 9,
+    "name": "breakfast",
+    "description": "pan"
+  },
+  "timestamp": "2026-06-18T18:21:28.35629"
+}
+```
+
+**Error Response**
+
+```json
+{
+    "statusCode": 404,
+    "message": "Category not found with id 9999",
+    "timestamp": "2026-06-18T18:02:25.062308"
+}
+
