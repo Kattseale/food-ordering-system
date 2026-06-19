@@ -1,5 +1,7 @@
 package com.jumpstart.food_ordering_system.controller;
 
+import com.jumpstart.food_ordering_system.exception.CategoryNotFoundException;
+import com.jumpstart.food_ordering_system.response.Response;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import jakarta.validation.Valid;
@@ -22,42 +24,79 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<CategoryDto> getAllCategories() {
-        return categoryService.getAllCategories();
+    public ResponseEntity<Response<List<CategoryDto>>> getAllCategories() {
+
+        List<CategoryDto> categories =
+                categoryService.getAllCategories();
+
+        return ResponseEntity.ok(
+                Response.success(
+                        "Categories retrieved",
+                        categories
+                )
+        );
     }
 
     @GetMapping("/{id}")
-    public CategoryDto getCategoryById(@PathVariable Long id) {
-        return categoryService.getCategoryById(id);
+    public ResponseEntity<Response<CategoryDto>> getCategoryById(
+            @PathVariable Long id) {
+
+        try {
+            CategoryDto dto = categoryService.getCategoryById(id);
+
+            return ResponseEntity.ok(
+                    Response.success("Category retrieved", dto));
+
+        } catch (CategoryNotFoundException ex) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Response.error(404, ex.getMessage()));
+        }
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDto> addCategory(
+    public ResponseEntity<Response<CategoryDto>> addCategory(
             @Valid @RequestBody CategoryDto dto) {
 
         CategoryDto savedCategory =
                 categoryService.addCategory(dto);
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(savedCategory);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(
+                        Response.success(
+                                "Category created successfully",
+                                savedCategory
+                        )
+                );
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDto> updateCategory(
+    public ResponseEntity<Response<CategoryDto>> updateCategory(
             @PathVariable Long id,
             @RequestBody CategoryDto dto) {
 
         CategoryDto updatedCategory =
                 categoryService.updateCategory(id, dto);
 
-        return ResponseEntity.ok(updatedCategory);
+        return ResponseEntity.ok(
+                Response.success(
+                        "Category updated successfully",
+                        updatedCategory
+                )
+        );
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategory(
+    public ResponseEntity<Response<Void>> deleteCategory(
             @PathVariable Long id) {
 
         categoryService.deleteCategory(id);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(
+                Response.success(
+                        "Category deleted successfully",
+                        null
+                )
+        );
     }
 }
